@@ -46,5 +46,5 @@ This creates a database and populates it with paths.
 
 2. Upload files as stored in step 1::
 
-    $ swiftbulkuploader --db-url sqlite:////tmp/paths.db upload --username=username --password=password --tenant-name=tenant --auth-url=url containername
+    $ swiftbulkuploader --db-url sqlite:////tmp/paths.db upload --username=username --password=password --tenant-name=tenant --auth-url=url containername --region-name regionname
 
