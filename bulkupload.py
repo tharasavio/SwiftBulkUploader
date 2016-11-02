@@ -26,8 +26,7 @@ TOTAL = 0
 FAILED_COUNT = 0
 BATCH = 1000  # the number of rows a process uploads at a time.
 SLEEP = 1  # Sleep timeout when trying to connect to the database.
-date=time.strftime("%H:%M:%S")
-header={'Date of uploading':date}
+
 REQUIRED_VARIABLES = [
     'OS_AUTH_URL',
     'OS_USERNAME',
@@ -43,6 +42,9 @@ REQUIRED_VARIABLES = [
 def upload_file(path, attempts=0):
     '''Given String source_file, upload the file to the OLRC to target_file
      and return True if successful. '''
+    
+    date=time.strftime("%H:%M:%S")
+    header={'Date of uploading':date}
 
     try:
         opened_source_file = open(path, 'r')
