@@ -26,7 +26,8 @@ TOTAL = 0
 FAILED_COUNT = 0
 BATCH = 1000  # the number of rows a process uploads at a time.
 SLEEP = 1  # Sleep timeout when trying to connect to the database.
-
+date=time.strftime("%H:%M:%S")
+header={'Date of uploading':date}
 REQUIRED_VARIABLES = [
     'OS_AUTH_URL',
     'OS_USERNAME',
@@ -49,11 +50,17 @@ def upload_file(path, attempts=0):
         print("Error opening: " + path)
         return False
     try:
+        if header:
+            header=dict(header)
+        else:
+            header={}
+            
         swiftclient.client.put_object(
             STORAGE_URL,
             AUTH_TOKEN,
             CONTAINER,
             path,
+            header,
             opened_source_file)
 
     except Exception, e:
