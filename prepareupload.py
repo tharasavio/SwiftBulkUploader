@@ -27,12 +27,16 @@ def prepare_upload(connect, directory, table_name):
     global COUNT, FAILED
 
     # Loop through all items in the directory.
-    for filename in os.listdir(directory):
+    
+    for subdir, dirs, files in os.walk(directory):
+        for file in files:
+            file_path=os.path.join(subdir, file)
 
-        file_path = os.path.join(directory, filename)
+        
+        
 
         # Add file name to the list.
-        if os.path.isfile(file_path):
+        
             try:
                 connect.insert_path(file_path, table_name)
                 COUNT += 1
